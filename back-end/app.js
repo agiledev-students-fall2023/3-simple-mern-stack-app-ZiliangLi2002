@@ -21,6 +21,24 @@ mongoose
 // load the dataabase models we want to deal with
 const { Message } = require('./models/Message')
 const { User } = require('./models/User')
+const { AboutMe } = require('./models/AboutMe')
+
+app.get('/about', async(req, res) =>{
+
+  try {
+    res.json({
+      title: 'About Us',
+      intro: 'My name is Ziliang Li, and my major is Math and CS',
+      picURL: 'https://imageupload.io/ib/ZYpViMh7fooVjs4_1696271160.jpg'
+    })  
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve aboutme from the database',
+    })
+  }
+})
 
 // a route to handle fetching all messages
 app.get('/messages', async (req, res) => {
